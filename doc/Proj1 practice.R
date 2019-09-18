@@ -113,10 +113,10 @@ plot_ly(song_len,y = ~songLen,color = ~decade,type = 'box') %>% layout(yaxis = l
 ###sentiment
 ##since this next segment takes a very long time to run, I've saved the data in the output folder
 ##for faster loading
-# dt_lyrics_sent <- get_nrc_sentiment(dt_lyrics$lyrics)
-# save(dt_lyrics_sent, file="../output/processed_song_sent.RData")
+dt_lyrics_sent <- get_nrc_sentiment(dt_lyrics$lyrics)
+save(dt_lyrics_sent, file="../output/processed_song_sent.RData")
 ###
-load("../output/processed_song_sent.RData")
+# load("../output/processed_song_sent.RData")
 dt_lyrics_sent <- (1/dt_lyrics$songLen * dt_lyrics_sent) %>% mutate(label = paste(dt_lyrics$genre,dt_lyrics$decade))
 sentMat <-tbl_df(dt_lyrics_sent)%>%
   group_by(label)%>%
